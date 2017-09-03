@@ -1,4 +1,4 @@
 #!/bin/bash
 
-mongod --dbpath /path/to/LogTwo/data
-npm start
+mongod --dbpath /Users/marcus.chiu/ComputerScience/MyProjects/LogTwo/data &
+npm start --prefix /Users/marcus.chiu/ComputerScience/MyProjects/LogTwo
