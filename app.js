@@ -11,7 +11,6 @@ var monk = require('monk');
 var db = monk('localhost:27017/logger');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var log = require('./routes/log');
 
 var app = express();
@@ -34,7 +33,6 @@ app.use(function(req,res,next){
 });
 
 app.use('/', index);
-// app.use('/users', users);
 app.use('/log', log);
 
 // catch 404 and forward to error handler
