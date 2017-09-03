@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    h1.
+        Log List
+    ul
+        each log, i in loglist
+            li
+                button(onclick="removeLog(\"#{log._id}\");") delete
+                div= "title: "     + log.title
+                div(style="white-space:pre-wrap;")= "content: "   + log.content
+                div= "timestamp: " + log.timestamp
+                each tag, i in log.topics
+                    div= "tag: " + tag
+    a(href="/log/new") CREATE LOG
+
+    script(type='text/javascript' src='/javascripts/log/list.js')

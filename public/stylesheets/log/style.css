@@ -1,0 +1,19 @@
+textarea {
+    width: 90vw;
+    height: 100vh;
+}
+
+#inputTopics {
+    font-size: 125%;
+}
+
+#inputTitle {
+    font-size: 250%;
+    outline: none;
+    border: none;
+}
+
+#textareaContent {
+    margin-top: 10px;
+    font-size: 125%;
+}

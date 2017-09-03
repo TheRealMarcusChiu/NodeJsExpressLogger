@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    input#inputTitle(type="text", placeholder="TITLE", name="title")
+    a(href="/log/list") SHOW LOGS
+    div
+    input#inputTopics(type="text", placeholder="enter topic", name="topics", onkeyup="topicKeyUp(event)")
+    button#btnSubmit(onclick="newLog()") submit
+    div#divTopicContainer()
+    textarea#textareaContent(placeholder="type content here", name="content")
+
+    script(type='text/javascript' src='/javascripts/log/new.js')
+    link(rel='stylesheet', href='/stylesheets/log/style.css')
