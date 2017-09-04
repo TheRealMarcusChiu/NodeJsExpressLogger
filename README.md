@@ -8,3 +8,7 @@ https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-f
 
 3. to start node server run at project root directory
    npm start
+   
+   
+1. or just run startup.sh then press control+C to quit
+   run `ps aux | grep mongod` to see if mongod server is running
