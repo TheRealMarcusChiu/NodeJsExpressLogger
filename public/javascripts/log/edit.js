@@ -1,7 +1,6 @@
-
-function newLog() {
+function updateLog(logId) {
     var method = "POST";
-    var url = "/log/add";
+    var url = "/log/update";
     var xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -18,6 +17,7 @@ function newLog() {
     };
 
     var params = {
+        "id": logId,
         "title":document.getElementById("inputTitle").value,
         "content": document.getElementById("textareaContent").value,
         "topics": getSelectedTopics(),
@@ -36,19 +36,4 @@ function getSelectedTopics() {
     });
 
     return selectedTopics;
-}
-
-function topicKeyUp(e){
-    var code = (e.keyCode ? e.keyCode : e.which);
-    if(code === 13) { // Enter keycode
-        addTopic(e.target.value);
-        e.target.value = "";
-    }
-}
-
-function addTopic(string_topic) {
-    var btn = document.createElement("BUTTON");
-    btn.innerHTML = string_topic;
-    btn.onclick = function() {this.parentNode.removeChild(this);};
-    document.getElementById("divTopicContainer").appendChild(btn);
 }

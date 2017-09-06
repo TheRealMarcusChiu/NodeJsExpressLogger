@@ -1,10 +1,12 @@
 extends ../layout
 
 block content
+    div.center
+        a(href="/log/list") SHOW LOGS
     input#inputTitle(type="text", placeholder="TITLE", name="title")
-    a(href="/log/list") SHOW LOGS
     div
     input#inputTopics(type="text", placeholder="enter topic", name="topics", onkeyup="topicKeyUp(event)")
+    input#inputTimestamp(type="text", name="timestamp" value="Sun Sep 03 2017 18:55:26 GMT-0500 (CDT)")
     button#btnSubmit(onclick="newLog()") submit
     div#divTopicContainer()
     textarea#textareaContent(placeholder="type content here", name="content")

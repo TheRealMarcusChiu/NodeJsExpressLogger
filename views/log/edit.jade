@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+    div.center
+        a(href="/log/list") SHOW LOGS
+    input#inputTitle(type="text", placeholder="TITLE", name="title", value="#{doc.title}")
+    div
+    input#inputTopics(type="text", placeholder="enter topic", name="topics", onkeyup="topicKeyUp(event)")
+    input#inputTimestamp(type="text", name="timestamp", value="#{doc.timestamp}")
+    button#btnSubmit(onclick="updateLog(\"#{doc._id}\")") update
+    div#divTopicContainer()
+        each topic in doc.topics
+            button(onclick="this.parentNode.removeChild(this)") #{topic}
+    textarea#textareaContent(placeholder="type content here", name="content")
+        | #{doc.content}
+
+    script(type='text/javascript' src='/javascripts/log/edit.js')
+    script(type='text/javascript' src='/javascripts/log/new.js')
+
+    link(rel='stylesheet', href='/stylesheets/log/style.css')

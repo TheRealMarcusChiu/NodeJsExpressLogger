@@ -27,3 +27,7 @@ function removeLog(logID) {
         xhr.send(JSON.stringify(params));
     }
 }
+
+function editLog(logID) {
+    window.location.href = "/log/edit/" + logID;
+}

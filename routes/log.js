@@ -26,6 +26,55 @@ router.get('/new', function(req, res) {
     res.render('log/new', { title: 'Add New Log' });
 });
 
+/* GET edit Log page. */
+router.get('/edit/:logId', function(req, res) {
+    var collection = req.db.get('logcollection');
+
+    collection.findOne({_id : req.params.logId}, function(e, doc){
+        if (doc) {
+            res.render('log/edit', {
+                "doc" : doc
+            });
+        }
+        else {
+            res.render('log/not_found', {
+                "id" : req.params.logId
+            });
+        }
+    });
+});
+
+router.post('/update', function(req, res) {
+    //Set our internal DB variable
+    var db = req.db;
+
+    var title = req.body.title;
+    var content = req.body.content;
+    var timestamp = req.body.timestamp;
+    var topics = req.body.topics;
+
+    var collection = db.get('logcollection');
+
+    // Submit to the DB
+    collection.update({
+        _id : req.body.id
+    }, {
+        "title" : title,
+        "content" : content,
+        "timestamp" : timestamp,
+        "topics" : topics
+    }, function (err, doc) {
+        if (err) {
+            // If it failed, return error
+            res.send("0");
+        }
+        else {
+            // return success
+            res.send("1");
+        }
+    });
+});
+
 /* POST to Add Log Service */
 router.post('/add', function(req, res) {
     //Set our internal DB variable
@@ -33,7 +82,7 @@ router.post('/add', function(req, res) {
 
     var title = req.body.title;
     var content = req.body.content;
-    var timestamp = getDate();
+    var timestamp = getDate(req.body.timestamp);
     var topics = req.body.topics;
 
     var collection = db.get('logcollection');
@@ -84,10 +133,18 @@ router.post('/delete', function(req, res) {
 // Helper Functions //
 //////////////////////
 
-function getDate() {
+function getDate(timestamp) {
+    var date;
 
-    const date = new time.Date();
-    date.setTimezone('America/Chicago');
+    console.log(timestamp);
+
+    if (timestamp.length > 1) {
+        date = new time.Date(timestamp);
+    } else {
+        date = new time.Date();
+        date.setTimezone('America/Chicago');
+    }
+
     return date;
 }
 
