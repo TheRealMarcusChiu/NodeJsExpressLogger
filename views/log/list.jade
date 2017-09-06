@@ -4,20 +4,21 @@ block content
     div.center
         a(href="/log/new") CREATE LOG
     ul
-        each log, i in loglist
-            li
-                if log._id
-                    button(onclick="removeLog(\"#{log._id}\");") delete
-                    button(onclick="editLog(\"#{log._id}\");") edit
-                if log.title
-                    div= "title: "     + log.title
-                if log.content
-                    div(style="white-space:pre-wrap;")= "content: "   + log.content
-                if log.timestamp
-                    div= "timestamp: " + log.timestamp
-                if log.topics
-                    each tag, i in log.topics
-                        div= "tag: " + tag
+        if loglist
+            each log, i in loglist
+                li
+                    if log._id
+                        button(onclick="removeLog(\"#{log._id}\");") delete
+                        button(onclick="editLog(\"#{log._id}\");") edit
+                    if log.title
+                        div= "title: "     + log.title
+                    if log.content
+                        div(style="white-space:pre-wrap;")= "content: "   + log.content
+                    if log.timestamp
+                        div= "timestamp: " + log.timestamp
+                    if log.topics
+                        each tag, i in log.topics
+                            div= "tag: " + tag
 
     script(type='text/javascript' src='/javascripts/log/list.js')
     link(rel='stylesheet', href='/stylesheets/log/style.css')
