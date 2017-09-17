@@ -17,11 +17,17 @@ function newLog() {
         }
     };
 
+    var timestamp = '';
+
+    if (document.getElementById("inputToggleOverrideTimeStamp").checked) {
+        timestamp = document.getElementById("inputTimestamp").value;
+    }
+
     var params = {
         "title":document.getElementById("inputTitle").value,
         "content": document.getElementById("textareaContent").value,
         "topics": getSelectedTopics(),
-        "timestamp": document.getElementById("inputTimestamp").value
+        "timestamp": timestamp
     };
 
     xhr.send(JSON.stringify(params));

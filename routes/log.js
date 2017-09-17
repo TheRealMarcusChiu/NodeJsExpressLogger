@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 router.get('/list', function(req, res) {
     var db = req.db;
     var collection = db.get('logcollection');
-    collection.find({},{},function(e,docs){
+    collection.find({},{sort: {timestamp: -1}},function(e,docs){
         res.render('log/list', {
             "loglist" : docs
         });
@@ -82,7 +82,7 @@ router.post('/add', function(req, res) {
 
     var title = req.body.title;
     var content = req.body.content;
-    var timestamp = getDate(req.body.timestamp);
+    var timestamp = getDateISOString(req.body.timestamp);
     var topics = req.body.topics;
 
     var collection = db.get('logcollection');
@@ -129,21 +129,25 @@ router.post('/delete', function(req, res) {
     });
 });
 
+router.post('/upload_file', function(req, res) {
+    console.log("uploading file");
+    console.dir(req.files);
+});
+
 //////////////////////
 // Helper Functions //
 //////////////////////
 
-function getDate(timestamp) {
+function getDateISOString(timestamp) {
     var date;
-
-    console.log(timestamp);
 
     if (timestamp.length > 1) {
         date = new time.Date(timestamp);
     } else {
         date = new time.Date();
-        date.setTimezone('America/Chicago');
     }
+
+    date = date.toISOString();
 
     return date;
 }
