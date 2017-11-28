@@ -1,3 +1,13 @@
+
+1. to start logger server
+   ./startup_daemon.sh
+
+   go to localhost:3000
+
+2. to stop logger server
+   ./shutdown_daemon.sh
+
+
 https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb
 
 1. run mongod server pointing to the /data directory
